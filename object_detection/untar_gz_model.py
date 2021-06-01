@@ -95,6 +95,13 @@ def write_config(pipeline):
         f.write(config_text)
 
 def modify_config(pipeline):
+    print(100*'0')
+    print("Start editing pretrained model config : ", model_file_name)
+    print(100*'0')
+
+    if model_file_name.startswith('efficientdet',0):
+      pipeline.model.ssd.num_classes = data['num_classes']
+
     if model_file_name.startswith('ssd',0):
       pipeline.model.ssd.num_classes = data['num_classes']
     elif model_file_name.startswith('centernet',0):
@@ -187,11 +194,13 @@ if __name__=="__main__":
   fine_tune_checkpoint = os.path.join(path_to_downloaded_file, 'checkpoint/ckpt-0')
   MODEL_DIR = path_to_pipeline_config
   print(100 * '-')
-  print("updating again the cfg.yaml file:\nwriting \n{\nnum_classes,\n   fine_tune_checkpoint,\n   fine_tune_checkpoint_type,\n   label_map_path \n     tf_record_input_reader\n}")
+  print("updating again the cfg.yaml file:\nwriting \n{\nnum_classes,\nfine_tune_checkpoint,\nfine_tune_checkpoint_type,\nlabel_map_path \ntf_record_input_reader\n}")
   data['fine_tune_checkpoint'] = fine_tune_checkpoint
   data['label_map_path'] = os.path.join(os.getcwd(), 'train_utils/label_map.pbtxt')
   data['train_tf_record_input_path'] = os.path.join(os.getcwd(),'train_utils/train.record' )
   data['test_tf_record_input_path'] = os.path.join(os.getcwd(),'train_utils/test.record' )
+  data['pretrained_model_file_name'] = os.path.join(os.getcwd(), downloaded_file)
+  data['dir_saved_model'] = os.path.join(os.getcwd(), 'inference_graph/frozen_graph/saved_model')
 
   yaml_dump("../cfg.yaml",data)
   setup_pipeline()

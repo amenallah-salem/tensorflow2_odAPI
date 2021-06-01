@@ -81,7 +81,7 @@ if __name__=="__main__":
   from object_detection.utils import label_map_util
   from object_detection.utils import visualization_utils as vis_util
   import yaml
-  print(os.getcwd())
+
   data = _red_config("../")
   
   path_to_labelmap = data['label_map_path']
@@ -95,7 +95,11 @@ if __name__=="__main__":
   model = tf.saved_model.load(dir_saved_model)
 
 
+  #os.mkdir('predicted_images')
+
+
   for image_path in glob.glob(path_images_for_test + '/*.jpg'): #iterate through all test images
+    print('Runnig prediction on image',image_path.split('/')[-1])
     image_np = load_image_into_numpy_array(image_path)
     output_dict = run_inference_for_single_image(model, image_np)
     vis_util.visualize_boxes_and_labels_on_image_array(
@@ -107,7 +111,10 @@ if __name__=="__main__":
         instance_masks=output_dict.get('detection_masks_reframed', None),
         use_normalized_coordinates=True,
         line_thickness=3)
-    display(Image.fromarray(image_np))
+    #display(Image.fromarray(image_np))
+    img=Image.fromarray(image_np)
+    img.save(os.path.join(os.getcwd(),'predicted_images', image_path.split('/')[-1]))
+  print("predictions has been saved in {}".format(os.path.join(os.getcwd(),'predicted_images')))
 
 
 

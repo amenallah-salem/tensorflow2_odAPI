@@ -29,7 +29,7 @@ def xml_to_csv(path):
 
 
 def main():
-    for folder in ['train', 'test']:
+    for folder in ['train', 'valid']:
         image_path = os.path.join(os.getcwd(), ('images/' + folder))
         xml_df = xml_to_csv(image_path)
         xml_df.to_csv(('images/'+folder+'_labels.csv'), index=None)
@@ -61,5 +61,5 @@ if __name__=='__main__':
 
   
   train_labels = pd.read_csv('./images/train_labels.csv')
-  test_labels = pd.read_csv('./images/test_labels.csv')
-  print('head of train labels.csv: {}\nhead of test_labels.csv: {}'.format(train_labels, test_labels))
+  valid_labels = pd.read_csv('./images/valid_labels.csv')
+  print('head of train labels.csv: {}\nhead of test_labels.csv: {}'.format(train_labels, valid_labels))

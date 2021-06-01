@@ -1,17 +1,21 @@
 #to fill only class names and num classes, batch size
 
 num_classes: <NUM_OF_CLASSES>
+names: 
+  class1: 1
+  class2: 2
+
+
+
 batch_size: <BATCH_SIZE> #
 model_main_directory: <MAIN_MODEL_DIR>
 fine_tune_checkpoint: <ckpt_ PATH>
 fine_tune_checkpoint_type: "detection"
 label_map_path: <LABEL_MAP_PATH>
-names: 
-  class1: 1
-  class2: 2
 train_tf_record_input_path: <TRAIN_TF_RECORD_PATH>
 test_tf_record_input_path: <TEST_TF_RECORD_PATH>
+dir_saved_model: <PATH_TO TEST SAVED GRAPHS>
+path_images_for_train: <PATH_TO TEST IMAGES>
+path_images_for_valid: <PATH_TO TEST IMAGES>
+path_images_for_test: <PATH_TO TEST IMAGES>
 
-dir_saved_model: /content/al_obj_det/object_detection/inference_graph/centernet_hg104_512x512_coco17_tpu/saved_model
-
-path_images_for_test: /content/valid

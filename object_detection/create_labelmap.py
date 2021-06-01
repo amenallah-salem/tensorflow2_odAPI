@@ -24,7 +24,6 @@ if __name__=='__main__':
   import yaml
   import os
   main_dir = os.getcwd()# inside main dir obje_det
-  print("main dir now is ",main_dir)
   data = _red_config('../')
   class_names=[]
   for key, val in data['names'].items():
