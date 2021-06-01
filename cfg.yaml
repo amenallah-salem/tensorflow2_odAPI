@@ -5,9 +5,9 @@ names:
   class1: 1
   class2: 2
 
+batch_size: 1 # default =1 #if multiple GPU exist you may increase batch_size
 
-
-batch_size: <BATCH_SIZE> #
+#do not edit-- all wil be updated automaticly
 model_main_directory: <MAIN_MODEL_DIR>
 fine_tune_checkpoint: <ckpt_ PATH>
 fine_tune_checkpoint_type: "detection"
