@@ -201,6 +201,9 @@ if __name__=="__main__":
   data['test_tf_record_input_path'] = os.path.join(os.getcwd(),'train_utils/test.record' )
   data['pretrained_model_file_name'] = os.path.join(os.getcwd(), downloaded_file)
   data['dir_saved_model'] = os.path.join(os.getcwd(), 'inference_graph/frozen_graph/saved_model')
+  data['path_images_for_test'] = os.path.join(os.getcwd(), 'images/test')
+  data['path_images_for_train'] = os.path.join(os.getcwd(), 'images/train')
+  data['path_images_for_valid'] = os.path.join(os.getcwd(), 'images/valid')
 
   yaml_dump("../cfg.yaml",data)
   setup_pipeline()
